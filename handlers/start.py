@@ -6,6 +6,7 @@ from keyboards.inline_keyboards import start_keyboard, step_1_keyboard, step_2_k
     step_10_keyboard, important_keyboard
 from main_step_by_step_assistant import dp
 
+
 # Start
 @dp.message()
 async def start(message: types.Message):
@@ -15,7 +16,6 @@ async def start(message: types.Message):
 
 @dp.callback_query(F.data == "start_no")
 async def start_no(call: types.CallbackQuery):
-    await call.message.delete()
     await call.message.answer(text="Ознакомительный бот: https://t.me/RFclubbot")
 
 
