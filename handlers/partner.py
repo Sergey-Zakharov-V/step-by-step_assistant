@@ -27,6 +27,7 @@ async def partner(message: Message):
 
     text = f"""
 {'Вы участвуете в партнерской программе' if friend else 'Вы не участвуете в партнерской программе'}\n
+Ваша партнерская ссылка: https://t.me/RFregbot?start={telegram_id}\n
 Ваши ссылки:
 RoyalFamily: {user.link_royalfamily if user.link_royalfamily else 'ссылка не установлена'}
 RoboForex: {user.link_roboforex if user and user.link_roboforex else 'ссылка не установлена'}
