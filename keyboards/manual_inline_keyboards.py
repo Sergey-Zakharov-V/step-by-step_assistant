@@ -7,6 +7,13 @@ start_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ])
 
+step_0_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        InlineKeyboardButton(text="Назад", callback_data="step_0_back"),
+        InlineKeyboardButton(text="Продолжить", callback_data="step_0_continue"),
+    ]
+])
+
 step_1_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="Назад", callback_data="step_1_back"),
@@ -23,10 +30,22 @@ step_2_keyboard = InlineKeyboardMarkup(inline_keyboard=[
 
 step_3_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     [
+        InlineKeyboardButton(text="RoboForex", callback_data="step_3_roboforex"),
+        InlineKeyboardButton(text="Forex4You", callback_data="step_3_forex4you"),
+    ],
+    [
         InlineKeyboardButton(text="Назад", callback_data="step_3_back"),
         InlineKeyboardButton(text="Продолжить", callback_data="step_3_continue"),
     ]
 ])
+
+step_3_roboforex_forex4you_keyboard = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text="Назад", callback_data="step_4_back"),
+            InlineKeyboardButton(text="Продолжить", callback_data="step_3_continue"),
+        ]
+    ])
 
 step_4_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     [
@@ -56,29 +75,14 @@ step_7_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ])
 
-step_8_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+change_links_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     [
-        InlineKeyboardButton(text="Назад", callback_data="step_8_back"),
-        InlineKeyboardButton(text="Продолжить", callback_data="step_8_continue"),
-    ]
-])
-
-step_9_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        InlineKeyboardButton(text="Изменить ссылку на RoyalFamily", callback_data="change_royalfamily"),
+    ],
     [
-        InlineKeyboardButton(text="Назад", callback_data="step_9_back"),
-        InlineKeyboardButton(text="Продолжить", callback_data="step_9_continue"),
-    ]
-])
-
-step_10_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        InlineKeyboardButton(text="Изменить ссылку на RoboForex", callback_data="change_roboforex"),
+    ],
     [
-        InlineKeyboardButton(text="Назад", callback_data="step_10_back"),
-        InlineKeyboardButton(text="Продолжить", callback_data="step_10_continue"),
-    ]
-])
-
-important_keyboard = InlineKeyboardMarkup(inline_keyboard=[
-    [
-        InlineKeyboardButton(text="Назад", callback_data="important_back"),
+        InlineKeyboardButton(text="Изменить ссылку на Forex4You", callback_data="change_forex4you"),
     ]
 ])
