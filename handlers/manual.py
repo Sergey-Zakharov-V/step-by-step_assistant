@@ -1,12 +1,40 @@
 from aiogram import types, F
 from aiogram.filters import CommandStart
+from aiogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
-from data.config import start_message, step_1, step_2, step_3, step_4, step_5, step_6, step_7, step_0
-from keyboards.manual_inline_keyboards import start_keyboard, step_1_keyboard, step_2_keyboard, step_3_keyboard, \
+from data.config import start_message, step_1, step_2, step_3, step_4, step_5, step_6, step_7, step_0, step_8
+from keyboards.inline_keyboards import start_keyboard, step_1_keyboard, step_2_keyboard, \
     step_4_keyboard, step_5_keyboard, step_6_keyboard, step_7_keyboard, step_0_keyboard, \
-    step_3_roboforex_forex4you_keyboard
+    step_3_roboforex_forex4you_keyboard, step_8_keyboard
 from main_step_by_step_assistant import dp
 from service.users_service import UserService
+
+
+async def get_step_3_keyboard(message: types.Message):
+    buttons = [[
+        InlineKeyboardButton(text="RoboForex", callback_data="step_3_roboforex"),
+        InlineKeyboardButton(text="Forex4You", callback_data="step_3_forex4you"),
+    ]]
+
+    telegram_id = str(message.chat.id)
+    user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
+    friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
+
+    if friend and friend.username:
+        buttons.append([
+            InlineKeyboardButton(text="Написать куратору", url=f"https://t.me/{friend.username}")
+        ])
+
+    buttons.append([
+        InlineKeyboardButton(text="Написать в техподдержку", url="https://t.me/RoyalFamily_Support_bot")
+    ])
+
+    buttons.append([
+        InlineKeyboardButton(text="Назад", callback_data="step_3_back"),
+        InlineKeyboardButton(text="Продолжить", callback_data="step_3_continue"),
+    ])
+
+    return InlineKeyboardMarkup(inline_keyboard=buttons)
 
 
 # Start
@@ -26,6 +54,9 @@ async def start(message: types.Message):
 
     if user and friend:
         await UserService.update(object_id=user.id, **{"friend": friend})
+    if user and username and not user.username:
+        await UserService.update(object_id=user.id, **{"username": username})
+
     await message.answer(text=start_message, reply_markup=start_keyboard)
 
 
@@ -57,8 +88,18 @@ async def step_1_continue(call: types.CallbackQuery):
     friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
     link_royalfamily = friend.link_royalfamily if friend and friend.link_royalfamily else "https://royalfamily.club/login"
 
+    text = f"""
+<b>Регистрация кабинета RF</b>
+
+Для регистрации на платформе "Royal Family" перейдите по этой ссылке
+
+{link_royalfamily}
+
+В форме регистрации введите свою электронную почту, никнейм, телеграм и пароль. Примите условия соглашения и нажмите кнопку "Зарегистрироваться"
+"""
+
     await call.message.answer(
-        text=f'Регистрация кабинета на платформе "Royal Family"\nhttps://teletype.in/@royalfamily.club/cknPArFFYTk\n\n{link_royalfamily}',
+        text=text,
         reply_markup=step_1_keyboard)
 
 
@@ -85,7 +126,8 @@ async def step_2_back(call: types.CallbackQuery):
 @dp.callback_query(F.data == "step_2_continue")
 async def step_2_continue(call: types.CallbackQuery):
     await call.message.delete()
-    await call.message.answer(text=step_3, reply_markup=step_3_keyboard)
+    keyboard = await get_step_3_keyboard(call.message)
+    await call.message.answer(text=step_3, reply_markup=keyboard)
 
 
 # Step 3
@@ -96,7 +138,7 @@ async def step_3_back(call: types.CallbackQuery):
 
 
 @dp.callback_query(F.data == "step_3_roboforex")
-async def step_3_back(call: types.CallbackQuery):
+async def step_3_roboforex(call: types.CallbackQuery):
     await call.message.delete()
 
     telegram_id = str(call.message.chat.id)
@@ -104,12 +146,20 @@ async def step_3_back(call: types.CallbackQuery):
     friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
     link_roboforex = friend.link_roboforex if friend and friend.link_roboforex else "https://my.roboforex.com/en/login/?a=ooem"
 
-    await call.message.answer(text=f"https://teletype.in/@royalfamily.club/registraciya_robo\n\nRoboForex: {link_roboforex}",
+    text = f"""
+<b>Регистрация у брокера RoboForex</b>
+
+Для регистрации перейдите по этой ссылке {link_roboforex}
+
+и выполните все действия в соответствии с инструкцией https://teletype.in/@royalfamily.club/registraciya_robo
+"""
+
+    await call.message.answer(text=text,
                               reply_markup=step_3_roboforex_forex4you_keyboard)
 
 
 @dp.callback_query(F.data == "step_3_forex4you")
-async def step_3_back(call: types.CallbackQuery):
+async def step_3_forex4you(call: types.CallbackQuery):
     await call.message.delete()
 
     telegram_id = str(call.message.chat.id)
@@ -117,7 +167,15 @@ async def step_3_back(call: types.CallbackQuery):
     friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
     link_forex4you = friend.link_forex4you if friend and friend.link_forex4you else "https://forex4you.xyz/?affid=gf60e6x"
 
-    await call.message.answer(text=f"https://teletype.in/@royalfamily.club/oGUU_BSAGMD\n\nForex4You: {link_forex4you}",
+    text = f"""
+<b>Регистрация у брокера Forex4you</b>
+
+Для регистрации перейдите по этой ссылке {link_forex4you}
+
+и выполните все действия в соответствии с инструкцией https://teletype.in/@royalfamily.club/oGUU_BSAGMD    
+"""
+
+    await call.message.answer(text=text,
                               reply_markup=step_3_roboforex_forex4you_keyboard)
 
 
@@ -131,11 +189,12 @@ async def step_3_continue(call: types.CallbackQuery):
 @dp.callback_query(F.data == "step_4_back")
 async def step_4_back(call: types.CallbackQuery):
     await call.message.delete()
-    await call.message.answer(text=step_3, reply_markup=step_3_keyboard)
+    keyboard = await get_step_3_keyboard(call.message)
+    await call.message.answer(text=step_3, reply_markup=keyboard)
 
 
 @dp.callback_query(F.data == "step_4_continue")
-async def step_2_continue(call: types.CallbackQuery):
+async def step_4_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_5, reply_markup=step_5_keyboard)
 
@@ -148,26 +207,39 @@ async def step_5_back(call: types.CallbackQuery):
 
 
 @dp.callback_query(F.data == "step_5_continue")
-async def step_2_continue(call: types.CallbackQuery):
+async def step_5_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_6, reply_markup=step_6_keyboard)
 
 
 # Step 6
 @dp.callback_query(F.data == "step_6_back")
-async def step_5_back(call: types.CallbackQuery):
+async def step_6_back(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_5, reply_markup=step_5_keyboard)
 
 
 @dp.callback_query(F.data == "step_6_continue")
-async def step_2_continue(call: types.CallbackQuery):
+async def step_6_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_7, reply_markup=step_7_keyboard)
 
 
 # Step 7
 @dp.callback_query(F.data == "step_7_back")
-async def step_5_back(call: types.CallbackQuery):
+async def step_7_back(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_6, reply_markup=step_6_keyboard)
+
+
+@dp.callback_query(F.data == "step_7_continue")
+async def step_7_continue(call: types.CallbackQuery):
+    await call.message.delete()
+    await call.message.answer(text=step_8, reply_markup=step_8_keyboard)
+
+
+# Step 7
+@dp.callback_query(F.data == "step_8_back")
+async def step_8_back(call: types.CallbackQuery):
+    await call.message.delete()
+    await call.message.answer(text=step_7, reply_markup=step_7_keyboard)

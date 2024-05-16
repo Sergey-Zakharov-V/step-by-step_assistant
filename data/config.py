@@ -21,12 +21,55 @@ step_1 = 'Регистрация кабинета на платформе "Royal
 
 step_2 = "Пополнение личного кабинета Royal Family\nhttps://teletype.in/@royalfamily.club/9-I-kDTdU8w"
 
-step_3 = "Регистрация у брокера.\n\nВыберите брокера\n\nЕсли вы не знаете, обратитесь к вашему куратору либо в техническую поддержку."
+step_3 = """
+<b>Регистрация у брокера</b>
 
-step_4 = "Открытие торгового счета\nRoboForex: https://teletype.in/@royalfamily.club/sozdanie_scheta_robo\nForex4You: https://teletype.in/@royalfamily.club/RgmjV5MDHBD"
+Выберите брокера, которого будете использовать в торговле. Если вы не знаете, обратитесь за помощью к своему куратору, либо в техническую поддержку RF.
+"""
 
-step_5 = "Пополнение торгового счета\nRoboForex: https://teletype.in/@royalfamily.club/popolnenie_robo\nForex4You: https://teletype.in/@royalfamily.club/jxagrJgv0Dc"
+step_4 = """
+<b>Открытие торгового счета</b>
 
-step_6 = "Активация и установка робота\nNova: https://teletype.in/@royalfamily.club/3jcDxKHRHQp\nSpider: https://teletype.in/@royalfamily.club/bFNd7tXvN3u"
+Выберите брокера для открытия счета и следуйте инструкции.
 
-step_7 = "Важно!\nhttps://teletype.in/@royalfamily.club/jJbrA8mUqfh"
+RoboForex:
+https://teletype.in/@royalfamily.club/sozdanie_scheta_robo
+
+Forex4You:
+https://teletype.in/@royalfamily.club/RgmjV5MDHBD
+"""
+
+step_5 = """
+<b>Пополнение торгового счета</b>
+
+Выберите брокера для пополнения счета и следуйте инструкции.
+
+RoboForex: https://teletype.in/@royalfamily.club/popolnenie_robo
+
+Forex4You: https://teletype.in/@royalfamily.club/jxagrJgv0Dc
+"""
+
+step_6 = """
+<b>Активация и установка робота</b>
+
+Выберите версию робота и следуйте инструкции.
+
+Nova: https://teletype.in/@royalfamily.club/3jcDxKHRHQp
+
+Spider: https://teletype.in/@royalfamily.club/bFNd7tXvN3u
+"""
+
+step_7 = """
+<b>Важно! На что обращать внимание при роботе с роботом</b>
+
+https://teletype.in/@royalfamily.club/jJbrA8mUqfh
+"""
+
+step_8 = """
+<b>Вы завершили все шаги необходимые для запуска робота!</b>
+Желаем успешного использования и высокой прибыли!
+
+Если вы еще не добавлены в закрытый чат напишите в техническую поддержку для добавления.
+
+Для управления партнерским разделом в боте отправьте сообщение:  /partner
+"""

@@ -28,17 +28,6 @@ step_2_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ])
 
-step_3_keyboard = InlineKeyboardMarkup(inline_keyboard=[
-    [
-        InlineKeyboardButton(text="RoboForex", callback_data="step_3_roboforex"),
-        InlineKeyboardButton(text="Forex4You", callback_data="step_3_forex4you"),
-    ],
-    [
-        InlineKeyboardButton(text="Назад", callback_data="step_3_back"),
-        InlineKeyboardButton(text="Продолжить", callback_data="step_3_continue"),
-    ]
-])
-
 step_3_roboforex_forex4you_keyboard = InlineKeyboardMarkup(
     inline_keyboard=[
         [
@@ -75,6 +64,15 @@ step_7_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     ]
 ])
 
+step_8_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        InlineKeyboardButton(text="Написать в техподдержку", url="https://t.me/RoyalFamily_Support_bot")
+    ],
+    [
+        InlineKeyboardButton(text="Назад", callback_data="step_8_back"),
+    ],
+])
+
 change_links_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     [
         InlineKeyboardButton(text="Изменить ссылку на RoyalFamily", callback_data="change_royalfamily"),
@@ -84,5 +82,11 @@ change_links_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     ],
     [
         InlineKeyboardButton(text="Изменить ссылку на Forex4You", callback_data="change_forex4you"),
+    ]
+])
+
+change_link_cancel_keyboard = InlineKeyboardMarkup(inline_keyboard=[
+    [
+        InlineKeyboardButton(text="Назад", callback_data="change_link_cancel"),
     ]
 ])

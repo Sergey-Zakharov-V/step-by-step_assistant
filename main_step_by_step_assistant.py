@@ -1,9 +1,12 @@
 import asyncio
 from aiogram import Bot, Dispatcher
+from aiogram.client.default import DefaultBotProperties
 
 from data.config import BOT_TOKEN
 
-bot = Bot(token=BOT_TOKEN)
+bot = Bot(token=BOT_TOKEN,
+          default=DefaultBotProperties(
+              **{"parse_mode": "HTML"}))
 dp = Dispatcher()
 
 
