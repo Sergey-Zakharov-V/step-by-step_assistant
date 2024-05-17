@@ -200,3 +200,17 @@ async def step_6_continue(call: types.CallbackQuery):
 async def step_7_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_8, reply_markup=step_8_keyboard)
+
+
+@dp.message()
+async def get_file(message: types.Message):
+    if str(message.chat.id) == "1509045389":
+        if message.photo:
+            print(message.photo)
+            await message.answer(f"Photo id: {message.photo[-1].file_id}")
+        elif message.video:
+            print(message.video)
+            await message.answer(f"Video id: {message.video.file_id}")
+        elif message.document:
+            print(message.document)
+            await message.answer(f"Document id: {message.document.file_id}")
