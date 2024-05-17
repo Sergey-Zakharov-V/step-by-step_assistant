@@ -19,7 +19,7 @@ step_0 = 'Отлично, тогда начнем регистрацию, я п�
 
 step_1 = 'Регистрация кабинета на платформе "Royal Family"\nhttps://teletype.in/@royalfamily.club/cknPArFFYTk'
 
-step_2 = "Пополнение личного кабинета Royal Family\nhttps://teletype.in/@royalfamily.club/9-I-kDTdU8w"
+step_2 = "<b>Пополнение личного кабинета Royal Family</b>\n\nhttps://teletype.in/@royalfamily.club/9-I-kDTdU8w"
 
 step_3 = """
 <b>Регистрация у брокера</b>
