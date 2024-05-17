@@ -6,7 +6,7 @@ from data.config import start_message, step_1, step_2, step_3, step_4, step_5, s
 from keyboards.inline_keyboards import start_keyboard, step_1_keyboard, step_2_keyboard, \
     step_4_keyboard, step_5_keyboard, step_6_keyboard, step_7_keyboard, step_0_keyboard, \
     step_3_roboforex_forex4you_keyboard, step_8_keyboard
-from main_step_by_step_assistant import dp
+from main_step_by_step_assistant import dp, bot
 from service.users_service import UserService
 
 
@@ -98,10 +98,10 @@ async def step_1_continue(call: types.CallbackQuery):
 
 В форме регистрации введите свою электронную почту, никнейм, телеграм и пароль. Примите условия соглашения и нажмите кнопку "Зарегистрироваться"
 """
-
-    await call.message.answer(
-        text=text,
-        reply_markup=step_1_keyboard)
+    await bot.send_photo(chat_id=call.message.chat.id,
+                         caption=text,
+                         photo="AgACAgIAAxkBAAICfGZHNfk4758O9rCktzf7l_UTkZ45AAIY3DEbTg85SuUS8KOJNIwAAQEAAwIAA3kAAzUE",
+                         reply_markup=step_1_keyboard)
 
 
 # Step 1
