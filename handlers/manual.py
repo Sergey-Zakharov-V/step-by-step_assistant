@@ -79,6 +79,7 @@ async def step_0_back(call: types.CallbackQuery):
     await call.message.answer(text=start_message, reply_markup=start_keyboard)
 
 
+@dp.callback_query(F.data == "step_2_back")
 @dp.callback_query(F.data == "step_0_continue")
 async def step_1_continue(call: types.CallbackQuery):
     await call.message.delete()
@@ -110,31 +111,19 @@ async def step_1_back(call: types.CallbackQuery):
     await call.message.answer(text=start_message, reply_markup=start_keyboard)
 
 
+@dp.callback_query(F.data == "step_3_back")
 @dp.callback_query(F.data == "step_1_continue")
 async def step_1_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_2, reply_markup=step_2_keyboard)
 
 
-# Step 2
-@dp.callback_query(F.data == "step_2_back")
-async def step_2_back(call: types.CallbackQuery):
-    await call.message.delete()
-    await call.message.answer(text=step_1, reply_markup=step_1_keyboard)
-
-
+@dp.callback_query(F.data == "step_4_back")
 @dp.callback_query(F.data == "step_2_continue")
 async def step_2_continue(call: types.CallbackQuery):
     await call.message.delete()
     keyboard = await get_step_3_keyboard(call.message)
     await call.message.answer(text=step_3, reply_markup=keyboard)
-
-
-# Step 3
-@dp.callback_query(F.data == "step_3_back")
-async def step_3_back(call: types.CallbackQuery):
-    await call.message.delete()
-    await call.message.answer(text=step_2, reply_markup=step_2_keyboard)
 
 
 @dp.callback_query(F.data == "step_3_roboforex")
@@ -179,67 +168,35 @@ async def step_3_forex4you(call: types.CallbackQuery):
                               reply_markup=step_3_roboforex_forex4you_keyboard)
 
 
+@dp.callback_query(F.data == "step_5_back")
 @dp.callback_query(F.data == "step_3_continue")
 async def step_3_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_4, reply_markup=step_4_keyboard)
 
 
-# Step 4
-@dp.callback_query(F.data == "step_4_back")
-async def step_4_back(call: types.CallbackQuery):
-    await call.message.delete()
-    keyboard = await get_step_3_keyboard(call.message)
-    await call.message.answer(text=step_3, reply_markup=keyboard)
-
-
+@dp.callback_query(F.data == "step_6_back")
 @dp.callback_query(F.data == "step_4_continue")
 async def step_4_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_5, reply_markup=step_5_keyboard)
 
 
-# Step 5
-@dp.callback_query(F.data == "step_5_back")
-async def step_5_back(call: types.CallbackQuery):
-    await call.message.delete()
-    await call.message.answer(text=step_4, reply_markup=step_4_keyboard)
-
-
+@dp.callback_query(F.data == "step_7_back")
 @dp.callback_query(F.data == "step_5_continue")
 async def step_5_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_6, reply_markup=step_6_keyboard)
 
 
-# Step 6
-@dp.callback_query(F.data == "step_6_back")
-async def step_6_back(call: types.CallbackQuery):
-    await call.message.delete()
-    await call.message.answer(text=step_5, reply_markup=step_5_keyboard)
-
-
+@dp.callback_query(F.data == "step_8_back")
 @dp.callback_query(F.data == "step_6_continue")
 async def step_6_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_7, reply_markup=step_7_keyboard)
 
 
-# Step 7
-@dp.callback_query(F.data == "step_7_back")
-async def step_7_back(call: types.CallbackQuery):
-    await call.message.delete()
-    await call.message.answer(text=step_6, reply_markup=step_6_keyboard)
-
-
 @dp.callback_query(F.data == "step_7_continue")
 async def step_7_continue(call: types.CallbackQuery):
     await call.message.delete()
     await call.message.answer(text=step_8, reply_markup=step_8_keyboard)
-
-
-# Step 7
-@dp.callback_query(F.data == "step_8_back")
-async def step_8_back(call: types.CallbackQuery):
-    await call.message.delete()
-    await call.message.answer(text=step_7, reply_markup=step_7_keyboard)
