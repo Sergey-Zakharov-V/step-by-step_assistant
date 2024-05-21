@@ -17,6 +17,7 @@ class LinkState(StatesGroup):
 
 @dp.message(Command("partner"))
 async def partner(message: Message):
+    print("It's work!")
     if not message.chat.username:
         text = """
 Для доступа к партнерской системе необходимо иметь имя пользователя(username) в Telegram
@@ -30,7 +31,6 @@ async def partner(message: Message):
 
     telegram_id = str(message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
-    friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
 
     if not user:
         await message.answer(text="Вам необходимо написать мне /start для продолжения")

@@ -1,2 +1,2 @@
-from .manual import dp
 from .partner import dp
+from .manual import dp
