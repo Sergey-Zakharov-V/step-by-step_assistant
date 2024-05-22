@@ -85,7 +85,7 @@ async def step_1_continue(call: types.CallbackQuery):
     telegram_id = str(call.message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
     friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
-    link_royalfamily = friend.link_royalfamily if friend and friend.link_royalfamily else "https://royalfamily.club/login"
+    link_royalfamily = friend.link_royalfamily if friend and friend.link_royalfamily else "https://royalfamily.club/register"
 
     text = f"""
 <b>ШАГ 1/6. Регистрация кабинета RF</b>
