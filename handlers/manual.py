@@ -12,7 +12,7 @@ from service.users_service import UserService
 async def get_step_3_keyboard(message: types.Message):
     buttons = [[
         InlineKeyboardButton(text="RoboForex", callback_data="step_3_roboforex_question"),
-        InlineKeyboardButton(text="Forex4You", callback_data="step_3_forex4you"),
+        InlineKeyboardButton(text="Forex4You", callback_data="step_3_forex4you_question"),
     ]]
 
     telegram_id = str(message.chat.id)
@@ -181,21 +181,54 @@ async def step_3_roboforex(call: types.CallbackQuery):
                               reply_markup=keyboard)
 
 
-@dp.callback_query(F.data == "step_3_forex4you")
+@dp.callback_query(F.data == "step_3_forex4you_question")
+async def step_3_forex4you_question(call: types.CallbackQuery):
+    await call.message.delete()
+
+    text = """
+<b>Регистрация у брокера Forex4you</b>
+
+Регистрировались ли Вы ранее на брокере Forex4you?   
+"""
+    keyboard = InlineKeyboardMarkup(inline_keyboard=[
+        [
+            InlineKeyboardButton(text="Да", callback_data="step_3_forex4you_yes"),
+            InlineKeyboardButton(text="Нет", callback_data="step_3_forex4you_no")
+        ]
+    ])
+    await call.message.answer(text=text, reply_markup=keyboard)
+
+
+@dp.callback_query(F.data == "step_3_forex4you_yes")
+@dp.callback_query(F.data == "step_3_forex4you_no")
 async def step_3_forex4you(call: types.CallbackQuery):
     await call.message.delete()
+
+    question_result = call.data
 
     telegram_id = str(call.message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
     friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
-    link_forex4you = friend.link_forex4you if friend and friend.link_forex4you else "https://forex4you.xyz/?affid=gf60e6x"
+    link_forex4you = friend.link_forex4you if friend and friend.link_forex4you else "https://forex4you.xyz/?affid=82kzmnj"
 
-    text = f"""
+    if question_result == "step_3_forex4you_no":
+        text = f"""
 <b>Регистрация у брокера Forex4you</b>
 
 Для регистрации перейдите по этой ссылке {link_forex4you}
 
-и выполните все действия в соответствии с инструкцией https://teletype.in/@royalfamily.club/oGUU_BSAGMD    
+и выполните все действия в соответствии с инструкцией https://teletype.in/@royalfamily.club/hHnB2OZ-6_E 
+"""
+    else:
+        text = f"""
+<b>Перенос аккаунта Forex4you</b>
+
+Для того чтобы работали торговые роботы на брокере Forex4you необходимо перейти в партнерскую сеть Royal Family. 
+Для перехода используйте эту ссылку 
+{link_forex4you} в соответствии с инструкцией ниже.
+
+Выполните все действия по этой инструкции
+https://teletype.in/@royalfamily.club/kkzLUUEiSuC 
 """
 
     keyboard = InlineKeyboardMarkup(inline_keyboard=[
