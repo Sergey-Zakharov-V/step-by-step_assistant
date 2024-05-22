@@ -85,7 +85,7 @@ async def step_1_continue(call: types.CallbackQuery):
     telegram_id = str(call.message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
     friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
-    link_royalfamily = friend.link_royalfamily if friend and friend.link_royalfamily else "https://royalfamily.club/register?ref=d362c9ca-12b6-412e-aad2-31782a1c8acf"
+    link_royalfamily = friend.link_royalfamily if friend and friend.link_royalfamily else "https://royalfamily.club/login"
 
     text = f"""
 <b>ШАГ 1/6. Регистрация кабинета RF</b>
@@ -156,7 +156,7 @@ async def step_3_roboforex(call: types.CallbackQuery):
     telegram_id = str(call.message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
     friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
-    link_roboforex = friend.link_roboforex if friend and friend.link_roboforex else "https://my.roboforex.com/en/?a=vsve"
+    link_roboforex = friend.link_roboforex if friend and friend.link_roboforex else "https://my.roboforex.com/en/login/?a=ooem"
 
     text = f"""
     
@@ -209,7 +209,7 @@ async def step_3_forex4you(call: types.CallbackQuery):
     telegram_id = str(call.message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
     friend = await UserService.find_one_or_none(**{"telegram_id": user.friend})
-    link_forex4you = friend.link_forex4you if friend and friend.link_forex4you else "https://forex4you.xyz/?affid=82kzmnj"
+    link_forex4you = friend.link_forex4you if friend and friend.link_forex4you else "https://forex4you.xyz/?affid=gf60e6x"
 
     if question_result == "step_3_forex4you_no":
         text = f"""
