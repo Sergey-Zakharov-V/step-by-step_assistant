@@ -37,6 +37,9 @@ change_links_keyboard = InlineKeyboardMarkup(inline_keyboard=[
     ],
     [
         InlineKeyboardButton(text="Изменить ссылку на Forex4You", callback_data="change_forex4you"),
+    ],
+    [
+        InlineKeyboardButton(text="Связаться с техподдержкой", url="https://t.me/RoyalFamily_Support_bot"),
     ]
 ])
 
