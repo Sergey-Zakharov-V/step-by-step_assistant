@@ -58,12 +58,6 @@ async def start(message: types.Message):
     await message.answer(text=start_message, reply_markup=start_keyboard)
 
 
-@dp.callback_query(F.data == "start_no")
-async def start_no(call: types.CallbackQuery):
-    await call.message.answer(
-        text="Вы можете ознакомится с нашими торговыми системами в этом боте \nhttps://t.me/INFO_RF_bot")
-
-
 @dp.callback_query(F.data == "start_yes")
 async def start_yes(call: types.CallbackQuery):
     await call.message.delete()
@@ -385,11 +379,8 @@ async def step_7_continue(call: types.CallbackQuery):
 async def get_file(message: types.Message):
     if str(message.chat.id) == "1509045389":
         if message.photo:
-            print(message.photo)
             await message.answer(f"Photo id: {message.photo[-1].file_id}")
         elif message.video:
-            print(message.video)
             await message.answer(f"Video id: {message.video.file_id}")
         elif message.document:
-            print(message.document)
             await message.answer(f"Document id: {message.document.file_id}")

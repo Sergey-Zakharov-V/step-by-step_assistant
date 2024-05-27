@@ -7,7 +7,7 @@ class Users(Base):
     __tablename__ = "Users"
 
     id = Column(BIGINT, primary_key=True, autoincrement=True)
-    username = Column(String, nullable=False)
+    username = Column(String, nullable=True)
     telegram_id = Column(String, unique=True, nullable=False)
     friend = Column(String, nullable=True)
     link_royalfamily = Column(String, nullable=True)
