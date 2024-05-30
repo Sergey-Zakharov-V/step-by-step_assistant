@@ -7,6 +7,7 @@ from data.config import start_message, step_2, step_3, step_0
 from keyboards.inline_keyboards import start_keyboard, step_1_keyboard, step_2_keyboard, step_0_keyboard
 from main_step_by_step_assistant import dp, bot
 from service.users_service import UserService
+from utils.message_delete import delete_message
 
 
 async def get_step_3_keyboard(message: types.Message):
@@ -38,7 +39,7 @@ async def get_step_3_keyboard(message: types.Message):
 # Start
 @dp.message(CommandStart())
 async def start(message: types.Message):
-    await message.delete()
+    await delete_message(message=message)
 
     deep_link = message.text.split(" ")
 
@@ -60,21 +61,21 @@ async def start(message: types.Message):
 
 @dp.callback_query(F.data == "start_yes")
 async def start_yes(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
     await call.message.answer(text=step_0, reply_markup=step_0_keyboard)
 
 
 # Step 0
 @dp.callback_query(F.data == "step_0_back")
 async def step_0_back(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
     await call.message.answer(text=start_message, reply_markup=start_keyboard)
 
 
 @dp.callback_query(F.data == "step_2_back")
 @dp.callback_query(F.data == "step_0_continue")
 async def step_1_continue(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     telegram_id = str(call.message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
@@ -103,28 +104,28 @@ async def step_1_continue(call: types.CallbackQuery):
 # Step 1
 @dp.callback_query(F.data == "step_1_back")
 async def step_1_back(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
     await call.message.answer(text=start_message, reply_markup=start_keyboard)
 
 
 @dp.callback_query(F.data == "step_3_back")
 @dp.callback_query(F.data == "step_1_continue")
 async def step_1_continue(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
     await call.message.answer(text=step_2, reply_markup=step_2_keyboard)
 
 
 @dp.callback_query(F.data == "step_4_back")
 @dp.callback_query(F.data == "step_2_continue")
 async def step_2_continue(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
     keyboard = await get_step_3_keyboard(call.message)
     await call.message.answer(text=step_3, reply_markup=keyboard)
 
 
 @dp.callback_query(F.data == "step_3_roboforex_question")
 async def step_3_roboforex_question(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     text = """
 <b>Регистрация у брокера RoboForex</b>
@@ -143,7 +144,7 @@ async def step_3_roboforex_question(call: types.CallbackQuery):
 @dp.callback_query(F.data == "step_3_roboforex_yes")
 @dp.callback_query(F.data == "step_3_roboforex_no")
 async def step_3_roboforex(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     question_result = call.data
 
@@ -177,7 +178,7 @@ async def step_3_roboforex(call: types.CallbackQuery):
 
 @dp.callback_query(F.data == "step_3_forex4you_question")
 async def step_3_forex4you_question(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     text = """
 <b>Регистрация у брокера Forex4you</b>
@@ -196,7 +197,7 @@ async def step_3_forex4you_question(call: types.CallbackQuery):
 @dp.callback_query(F.data == "step_3_forex4you_yes")
 @dp.callback_query(F.data == "step_3_forex4you_no")
 async def step_3_forex4you(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     question_result = call.data
 
@@ -241,7 +242,7 @@ https://teletype.in/@royalfamily.club/kkzLUUEiSuC
 @dp.callback_query(F.data == "step_5_back_forex4you")
 @dp.callback_query(F.data == "step_3_continue_forex4you")
 async def step_3_continue(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     data = call.data.split("_")[3]
 
@@ -269,7 +270,7 @@ async def step_3_continue(call: types.CallbackQuery):
 @dp.callback_query(F.data == "step_6_back_forex4you")
 @dp.callback_query(F.data == "step_4_continue_forex4you")
 async def step_4_continue(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     data = call.data.split("_")[3]
 
@@ -299,7 +300,7 @@ async def step_4_continue(call: types.CallbackQuery):
 @dp.callback_query(F.data == "step_7_back_forex4you")
 @dp.callback_query(F.data == "step_5_continue_forex4you")
 async def step_5_continue(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     data = call.data.split("_")[3]
 
@@ -327,7 +328,7 @@ https://teletype.in/@royalfamily.club/3jcDxKHRHQp
 @dp.callback_query(F.data == "step_8_back_forex4you")
 @dp.callback_query(F.data == "step_6_continue_forex4you")
 async def step_6_continue(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     data = call.data.split("_")[3]
 
@@ -350,7 +351,7 @@ https://teletype.in/@royalfamily.club/jJbrA8mUqfh
 @dp.callback_query(F.data == "step_7_continue_roboforex")
 @dp.callback_query(F.data == "step_7_continue_forex4you")
 async def step_7_continue(call: types.CallbackQuery):
-    await call.message.delete()
+    await delete_message(message=call.message)
 
     data = call.data.split("_")[3]
 

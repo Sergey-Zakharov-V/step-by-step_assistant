@@ -7,6 +7,7 @@ from aiogram.filters import Command
 from keyboards.inline_keyboards import change_links_keyboard, change_link_cancel_keyboard
 from main_step_by_step_assistant import dp
 from service.users_service import UserService
+from utils.message_delete import delete_message
 
 
 class LinkState(StatesGroup):
@@ -49,7 +50,8 @@ Forex4You: {user.link_forex4you if user and user.link_forex4you else 'ссылк
 
 @dp.callback_query(F.data == "change_royalfamily")
 async def change_royalfamily(call: CallbackQuery, state: FSMContext):
-    await call.message.delete()
+    await delete_message(message=call.message)
+
     await state.set_state(LinkState.set_link_royalfamily)
     await call.message.answer("Пришлите мне вашу партнерскую ссылку",
                               reply_markup=change_link_cancel_keyboard)
@@ -57,7 +59,8 @@ async def change_royalfamily(call: CallbackQuery, state: FSMContext):
 
 @dp.message(LinkState.set_link_royalfamily)
 async def set_link_royalfamily(message: Message, state: FSMContext):
-    await message.delete()
+    await delete_message(message=message)
+
     link = message.text
     telegram_id = str(message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
@@ -73,7 +76,8 @@ async def set_link_royalfamily(message: Message, state: FSMContext):
 
 @dp.callback_query(F.data == "change_roboforex")
 async def change_royalfamily(call: CallbackQuery, state: FSMContext):
-    await call.message.delete()
+    await delete_message(message=call.message)
+
     await state.set_state(LinkState.set_link_roboforex)
     await call.message.answer("Пришлите мне вашу партнерскую ссылку",
                               reply_markup=change_link_cancel_keyboard)
@@ -81,7 +85,8 @@ async def change_royalfamily(call: CallbackQuery, state: FSMContext):
 
 @dp.message(LinkState.set_link_roboforex)
 async def set_link_roboforex(message: Message, state: FSMContext):
-    await message.delete()
+    await delete_message(message=message)
+
     link = message.text
     telegram_id = str(message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
@@ -97,7 +102,8 @@ async def set_link_roboforex(message: Message, state: FSMContext):
 
 @dp.callback_query(F.data == "change_forex4you")
 async def change_link_forex4you(call: CallbackQuery, state: FSMContext):
-    await call.message.delete()
+    await delete_message(message=call.message)
+
     await state.set_state(LinkState.set_link_forex4you)
     await call.message.answer(text="Пришлите мне вашу партнерскую ссылку",
                               reply_markup=change_link_cancel_keyboard)
@@ -105,7 +111,8 @@ async def change_link_forex4you(call: CallbackQuery, state: FSMContext):
 
 @dp.message(LinkState.set_link_forex4you)
 async def set_link_forex4you(message: Message, state: FSMContext):
-    await message.delete()
+    await delete_message(message=message)
+
     link = message.text
     telegram_id = str(message.chat.id)
     user = await UserService.find_one_or_none(**{"telegram_id": telegram_id})
@@ -121,6 +128,7 @@ async def set_link_forex4you(message: Message, state: FSMContext):
 
 @dp.callback_query(F.data == "change_link_cancel")
 async def change_link_cancel(call: CallbackQuery, state: FSMContext):
-    await call.message.delete()
+    await delete_message(message=call.message)
+
     await state.clear()
     await partner(call.message)
