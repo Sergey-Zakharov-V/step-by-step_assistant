@@ -80,7 +80,7 @@ async def profitability(call: CallbackQuery):
     await delete_message(message=call.message)
 
     await call.message.answer_photo(caption=profitability_text,
-                                    photo="AgACAgIAAxkBAAIF92ZUVf0l4R_0WYIXFZ8poNal9CY4AAJW1jEb7SGhSj8aZsVJ8EwgAQADAgADeQADNQQ",
+                                    photo="AgACAgIAAxkBAAIHZWZbXrxQ4NN1PQZyXeG9nL2QgUYjAAKS3jEb_KzZSrUtk9QI-5fuAQADAgADeQADNQQ",
                                     reply_markup=profitability_keyboard)
 
 
@@ -92,17 +92,17 @@ async def robot_profitability(call: CallbackQuery):
 
     photo = None
     if data[2] == "conservative":
-        photo = "AgACAgIAAxkBAAIGA2ZUVjjCHQ3lmHaFGy6DXPVbkiI4AAJc1jEb7SGhSpe0nZqEAUuFAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAIHWmZbXrvKvDnDGNN7DQe8hKzbFxucAAKT3jEb_KzZSpGXv1GBt1zPAQADAgADeQADNQQ"
     elif data[2] == "conservative+":
-        photo = "AgACAgIAAxkBAAIGAWZUVjfJjcOB1L51f_C6TbMNYO9iAAJb1jEb7SGhSlx-YD3b3WnhAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAIHXWZbXryRDBI_bC2V5H0i_4nkhhMmAAKV3jEb_KzZSpLI6K3zGB4jAQADAgADeQADNQQ"
     elif data[2] == "medium":
-        photo = "AgACAgIAAxkBAAIF_2ZUVjdq1EMQGGTth6KIHvWBxxEZAAJa1jEb7SGhSiv5YAsFsn9hAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAIHZGZbXrxkWFNEtLVKN5zQ3om8m3X2AAKR3jEb_KzZSoF7m9ceJayvAQADAgADeQADNQQ"
     elif data[2] == "medium+":
-        photo = "AgACAgIAAxkBAAIF_WZUVjdDAj4w4ekbG8SL0Ei4mWL6AAJZ1jEb7SGhSi8iJpWtya38AQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAIHX2ZbXrwWW-A01cHlpvES2DmElxuBAAKX3jEb_KzZSkT7tB5DW8kRAQADAgADeQADNQQ"
     elif data[2] == "spider":
-        photo = "AgACAgIAAxkBAAIF-mZUVjfjZdMVEDKs8el3KCIvRut6AAJY1jEb7SGhSiY1oDuHw5-mAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAIHW2ZbXrzs0QABfkMzjejciRj1ZEzXNwAClN4xG_ys2UqYKtiU44QRvAEAAwIAA3kAAzUE"
     elif data[2] == "spider+":
-        photo = "AgACAgIAAxkBAAIF-WZUVjfpfXFJ-7G8XqhqrKwom_Q8AAJX1jEb7SGhSk4T9fJz8qC5AQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAIHXmZbXryvY1JXCp2IqqtWd80NDSS-AAKW3jEb_KzZSt2mLmF23JkuAQADAgADeQADNQQ"
     if photo:
         await call.message.answer_photo(photo=photo,
                                         reply_markup=back_to_profitability_keyboard)
