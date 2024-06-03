@@ -102,7 +102,7 @@ async def robot_profitability(call: CallbackQuery):
     elif data[2] == "spider":
         photo = "AgACAgIAAxkBAAIHW2ZbXrzs0QABfkMzjejciRj1ZEzXNwAClN4xG_ys2UqYKtiU44QRvAEAAwIAA3kAAzUE"
     elif data[2] == "spider+":
-        photo = "AgACAgIAAxkBAAIHXmZbXryvY1JXCp2IqqtWd80NDSS-AAKW3jEb_KzZSt2mLmF23JkuAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAIHrWZeGeamsNhJ_pN1Vh0eBnBJPX-mAALF1jEbnaj5Svnbdet4uYnGAQADAgADeQADNQQ"
     if photo:
         await call.message.answer_photo(photo=photo,
                                         reply_markup=back_to_profitability_keyboard)
