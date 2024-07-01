@@ -92,17 +92,17 @@ async def robot_profitability(call: CallbackQuery):
 
     photo = None
     if data[2] == "conservative":
-        photo = "AgACAgIAAxkBAAIHWmZbXrvKvDnDGNN7DQe8hKzbFxucAAKT3jEb_KzZSpGXv1GBt1zPAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAINUWaCu5QS58S9tFXA1sBYmZTyToHmAALs3jEbqSsQSBYGjqLgP022AQADAgADeQADNQQ"
     elif data[2] == "conservative+":
-        photo = "AgACAgIAAxkBAAIHXWZbXryRDBI_bC2V5H0i_4nkhhMmAAKV3jEb_KzZSpLI6K3zGB4jAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAINTGaCu5Oucl8_0AwHRE0930PsqaD-AALq3jEbqSsQSIm-jD6nj-9rAQADAgADeQADNQQ"
     elif data[2] == "medium":
-        photo = "AgACAgIAAxkBAAIHZGZbXrxkWFNEtLVKN5zQ3om8m3X2AAKR3jEb_KzZSoF7m9ceJayvAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAINTmaCu5M3NrMlSibCFSb7rIpoBJCNAALr3jEbqSsQSFTAhxWGaE62AQADAgADeQADNQQ"
     elif data[2] == "medium+":
-        photo = "AgACAgIAAxkBAAIHX2ZbXrwWW-A01cHlpvES2DmElxuBAAKX3jEb_KzZSkT7tB5DW8kRAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAINSWaCu5I0zPj8oGWTilwRQZNXfD_wAALp3jEbqSsQSIvK9plFn3RPAQADAgADeQADNQQ"
     elif data[2] == "spider":
-        photo = "AgACAgIAAxkBAAIHW2ZbXrzs0QABfkMzjejciRj1ZEzXNwAClN4xG_ys2UqYKtiU44QRvAEAAwIAA3kAAzUE"
+        photo = "AgACAgIAAxkBAAINR2aCu5LlZyqpSCFQrvEdf-Jsu-YLAALn3jEbqSsQSJost8cEpZo7AQADAgADeQADNQQ"
     elif data[2] == "spider+":
-        photo = "AgACAgIAAxkBAAIHrWZeGeamsNhJ_pN1Vh0eBnBJPX-mAALF1jEbnaj5Svnbdet4uYnGAQADAgADeQADNQQ"
+        photo = "AgACAgIAAxkBAAINSGaCu5IompuRaQjAeNkSrLwTGBjuAALo3jEbqSsQSBmNVze6odb1AQADAgADeQADNQQ"
     if photo:
         await call.message.answer_photo(photo=photo,
                                         reply_markup=back_to_profitability_keyboard)
